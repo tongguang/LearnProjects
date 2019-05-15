@@ -1,4 +1,4 @@
-﻿Shader "LearnSHader/1-NoiseMask1"
+﻿Shader "LearnShader/1-NoiseMask1"
 {
 	Properties
 	{
