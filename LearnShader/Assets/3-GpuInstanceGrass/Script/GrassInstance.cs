@@ -252,6 +252,17 @@ public class GrassInstance : MonoBehaviour
 //            Graphics.DrawMeshInstanced(_CurMesh, 0, _CurMaterial, curSubmitInstance.Matrixs, curSubmitInstance.Matrixs.Length);
 //                MaterialPropertyBlock properties = new MaterialPropertyBlock();
 //                properties.SetVectorArray("_Color", new List<Vector4>() { Color.red, Color.red });
+            // Graphics.DrawMeshInstanced(
+            //     _CurMesh,
+            //     0,
+            //     _CurMaterial,
+            //     curSubmitInstance.Matrixs,
+            //     curSubmitInstance.Matrixs.Length,
+            //     curSubmitInstance.PropertyBlock,
+            //     ShadowCastingMode.Off,
+            //     false,
+            //     0,
+            //     null);
             Graphics.DrawMeshInstanced(
                 _CurMesh,
                 0,
@@ -262,7 +273,7 @@ public class GrassInstance : MonoBehaviour
                 ShadowCastingMode.Off,
                 false,
                 0,
-                null);
+                RenderCamera);
         }
     }
 
