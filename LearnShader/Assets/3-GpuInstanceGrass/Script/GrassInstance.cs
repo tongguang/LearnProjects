@@ -36,7 +36,7 @@ public class GrassInstance : MonoBehaviour
 
     List<SubmitInstance> _CurSubmitInstances = new List<SubmitInstance>();
 
-    Vector2Int[] _CurShowBlockCells = new Vector2Int[9];
+    Vector2Int[] _CurShowBlocks = new Vector2Int[9];
 
     int[] _ShowBlockIndexCalcInts = new[] { -1, 0, 1 };
     List<Matrix4x4> _TempMatrix4x4s = new List<Matrix4x4>();
@@ -120,9 +120,9 @@ public class GrassInstance : MonoBehaviour
         {
             _RealUseGrassMaterialList.Add(Instantiate(material));
         }
-        for (int i = 0; i < _CurShowBlockCells.Length; i++)
+        for (int i = 0; i < _CurShowBlocks.Length; i++)
         {
-            _CurShowBlockCells[i] = new Vector2Int(-1, -1);
+            _CurShowBlocks[i] = new Vector2Int(-1, -1);
         }
         _CombineTexture = new Texture2D(0, 0, TextureFormat.RGBA32, false, false);
         SetGrassLevel(0);
@@ -144,9 +144,9 @@ public class GrassInstance : MonoBehaviour
         }
         _ShowBlockDirty = false;
 
-        int cellX4, cellY4;
-        PosToBlockCell(RolePosition.x, RolePosition.y, out cellX4, out cellY4);
-        if (_CurShowBlockCells[4].x == cellX4 && _CurShowBlockCells[4].y == cellY4)
+        int blockX4, blockY4;
+        PosToBlock(RolePosition.x, RolePosition.y, out blockX4, out blockY4);
+        if (_CurShowBlocks[4].x == blockX4 && _CurShowBlocks[4].y == blockY4)
         {
             return;
         }
@@ -155,14 +155,14 @@ public class GrassInstance : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 int index = j * 3 + i;
-                var oldX = _CurShowBlockCells[index].x;
-                var oldY = _CurShowBlockCells[index].y;
-                var newX = cellX4 + _ShowBlockIndexCalcInts[i];
-                var newY = cellY4 + _ShowBlockIndexCalcInts[j];
+                var oldX = _CurShowBlocks[index].x;
+                var oldY = _CurShowBlocks[index].y;
+                var newX = blockX4 + _ShowBlockIndexCalcInts[i];
+                var newY = blockY4 + _ShowBlockIndexCalcInts[j];
                 if (oldX != newX || oldY != newY)
                 {
-                    _CurShowBlockCells[index].x = newX;
-                    _CurShowBlockCells[index].y = newY;
+                    _CurShowBlocks[index].x = newX;
+                    _CurShowBlocks[index].y = newY;
                     _SubmitInstanceDirty = true;
                 }
             }
@@ -184,14 +184,14 @@ public class GrassInstance : MonoBehaviour
         _CurSubmitInstances.Clear();
         if (GrassDataInfo != null)
         {
-            foreach (var curShowBlockCell in _CurShowBlockCells)
+            foreach (var curShowBlock in _CurShowBlocks)
             {
-                if (curShowBlockCell.x < 0 || curShowBlockCell.y < 0)
+                if (curShowBlock.x < 0 || curShowBlock.y < 0)
                 {
                     continue;
                 }
 
-                var index = BlockCellToIndex(curShowBlockCell.x, curShowBlockCell.y);
+                var index = BlockToIndex(curShowBlock.x, curShowBlock.y);
                 if (index >= GrassDataInfo.BlockList.Count)
                 {
                     continue;
@@ -277,18 +277,18 @@ public class GrassInstance : MonoBehaviour
         }
     }
 
-    private void PosToBlockCell(float x, float z, out int cellX, out int cellY)
+    private void PosToBlock(float x, float z, out int blockX, out int blockY)
     {
-        cellX = Mathf.FloorToInt(1.0f * x / BlockSize.x);
-        cellY = Mathf.FloorToInt(1.0f * z / BlockSize.y);
+        blockX = Mathf.FloorToInt(1.0f * x / BlockSize.x);
+        blockY = Mathf.FloorToInt(1.0f * z / BlockSize.y);
     }
 
-    private int BlockCellToIndex(int cellX, int cellY)
+    private int BlockToIndex(int blockX, int blockY)
     {
         int index = 0;
         if (GrassDataInfo != null)
         {
-            index = cellY * GrassDataInfo.BlockXMax + cellX;
+            index = blockY * GrassDataInfo.BlockXMax + blockX;
         }
 
         return index;
@@ -296,8 +296,8 @@ public class GrassInstance : MonoBehaviour
 
     private int PosToBlockIndex(float x, float z)
     {
-        int cellX, cellY;
-        PosToBlockCell(x, z, out cellX, out cellY);
-        return BlockCellToIndex(cellX, cellY);
+        int blockX, blockY;
+        PosToBlock(x, z, out blockX, out blockY);
+        return BlockToIndex(blockX, blockY);
     }
 }

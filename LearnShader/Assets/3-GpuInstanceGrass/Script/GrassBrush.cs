@@ -57,9 +57,9 @@ public class GrassBrush : MonoBehaviour
         HashSet<Texture2D> textures = new HashSet<Texture2D>();
         foreach (var msehFilter in msehFilters)
         {
-            var cellX = Mathf.FloorToInt(1.0f * msehFilter.transform.position.x / BlockSize.x);
-            var cellY = Mathf.FloorToInt(1.0f * msehFilter.transform.position.z / BlockSize.y);
-            var index = cellY * xMax + cellX;
+            var blockX = Mathf.FloorToInt(1.0f * msehFilter.transform.position.x / BlockSize.x);
+            var blockY = Mathf.FloorToInt(1.0f * msehFilter.transform.position.z / BlockSize.y);
+            var index = blockY * xMax + blockX;
             var grassItem = new GrassData.GrassItem();
             grassData.BlockList[index].GrassItems.Add(grassItem);
             grassItem.TransformMatrix = msehFilter.transform.localToWorldMatrix;
