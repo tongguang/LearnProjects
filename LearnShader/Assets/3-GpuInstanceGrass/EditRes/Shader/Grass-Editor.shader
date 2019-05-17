@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Shader/Grass-Editor" {
+Shader "LearnShader/Grass-Editor" {
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("MainTex", 2D) = "white" {}
@@ -13,18 +13,18 @@ Shader "Shader/Grass-Editor" {
 	SubShader
 	{
 		Tags
-		{ 
-			"Queue"="Transparent" 
-			"RenderType"="Opaque" 
+		{
+			"Queue"="Transparent"
+			"RenderType"="Opaque"
 			"IgnoreProject"="True"
-			"DisableBatching" = "True" 
+			"DisableBatching" = "True"
 		}
 		LOD 100
 		Cull Off
 		ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha
 
-		Pass 
+		Pass
 		{
 		CGPROGRAM
 			#pragma vertex vert
@@ -43,7 +43,7 @@ Shader "Shader/Grass-Editor" {
 			{
 				float4 vertex : SV_POSITION;
 				float2 texcoord  : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID 
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			sampler2D _MainTex;
@@ -59,7 +59,7 @@ Shader "Shader/Grass-Editor" {
 			{
 				v2f o;
 				UNITY_SETUP_INSTANCE_ID(IN);
-                UNITY_TRANSFER_INSTANCE_ID(IN, o); 
+                UNITY_TRANSFER_INSTANCE_ID(IN, o);
 
 				//o.vertex = UnityObjectToClipPos(IN.vertex);
 
@@ -90,7 +90,7 @@ Shader "Shader/Grass-Editor" {
 				upLocal = cross(rightLocal, localDir);
 				float3 BBLocalPos = rightLocal * IN.vertex.x + upLocal * IN.vertex.y;
 				o.vertex = UnityObjectToClipPos(float4(BBLocalPos, 1));
-				
+
 				o.texcoord = IN.texcoord;
 				return o;
 			}
