@@ -52,22 +52,22 @@ public class GrassInstance : MonoBehaviour
     private int _MainTexPropID = Shader.PropertyToID("_MainTex");
 
 
-    public Vector2 testPos;
-    public List<Texture2D> testTexture2Ds;
-
-    public void Test1()
-    {
-    }
-
-    public void Test2()
-    {
-        SetRolePosition(testPos.x, testPos.y);
-    }
-
-    public void Test3()
-    {
-        SetTextures(testTexture2Ds);
-    }
+//    public Vector2 testPos;
+//    public List<Texture2D> testTexture2Ds;
+//
+//    public void Test1()
+//    {
+//    }
+//
+//    public void Test2()
+//    {
+//        SetRolePosition(testPos.x, testPos.y);
+//    }
+//
+//    public void Test3()
+//    {
+//        SetTextures(testTexture2Ds);
+//    }
 
     public void SetGrassLevel(int level)
     {
@@ -82,6 +82,7 @@ public class GrassInstance : MonoBehaviour
     public void SetMapGrassData(GrassData grassData)
     {
         GrassDataInfo = grassData;
+        SetTextures(grassData.GrassTextures);
         _ShowBlockDirty = true;
         _SubmitInstanceDirty = true;
     }
@@ -248,7 +249,7 @@ public class GrassInstance : MonoBehaviour
         }
         foreach (var curSubmitInstance in _CurSubmitInstances)
         {
-            //                Graphics.DrawMeshInstanced(CurMesh, 0, _CurMaterial, curSubmitInstance.Matrixs, curSubmitInstance.Matrixs.Length);
+//            Graphics.DrawMeshInstanced(_CurMesh, 0, _CurMaterial, curSubmitInstance.Matrixs, curSubmitInstance.Matrixs.Length);
 //                MaterialPropertyBlock properties = new MaterialPropertyBlock();
 //                properties.SetVectorArray("_Color", new List<Vector4>() { Color.red, Color.red });
             Graphics.DrawMeshInstanced(
