@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using N3D.Editor;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using Random = System.Random;
 
 [CustomEditor(typeof(GrassBrush))]
 public class GrassBrushEditor : UnityEditor.Editor
@@ -16,6 +11,7 @@ public class GrassBrushEditor : UnityEditor.Editor
     SerializedProperty _GrassMaxScale;
     SerializedProperty _BrushRadius;
     SerializedProperty _CreateGrassNum;
+    SerializedProperty _TerrainLayerName;
 
     RaycastHit _RaycastHit;
     private bool _IsRayHit = false;
@@ -29,6 +25,7 @@ public class GrassBrushEditor : UnityEditor.Editor
         _GrassMaxScale = serializedObject.FindProperty("GrassMaxScale");
         _BrushRadius = serializedObject.FindProperty("BrushRadius");
         _CreateGrassNum = serializedObject.FindProperty("CreateGrassNum");
+        _TerrainLayerName = serializedObject.FindProperty("TerrainLayerName");
     }
 
     void OnSceneGUI()
@@ -85,7 +82,7 @@ public class GrassBrushEditor : UnityEditor.Editor
                             var startPos = new Vector3(x, _RaycastHit.point.y + 500, z);
                             RaycastHit tempRaycastHit;
                             if (Physics.Raycast(startPos, Vector3.down, out tempRaycastHit, 1000f,
-                                1 << LayerMask.NameToLayer("Terrain")))
+                                1 << LayerMask.NameToLayer(_TerrainLayerName.stringValue)))
                             {
                                 if (Vector3.Distance(_RaycastHit.point, tempRaycastHit.point) > _BrushRadius.floatValue)
                                 {
@@ -126,7 +123,7 @@ public class GrassBrushEditor : UnityEditor.Editor
 
         _IsRayHit = false;
         Ray worldRay = HandleUtility.GUIPointToWorldRay(e.mousePosition);
-        if (Physics.Raycast(worldRay, out _RaycastHit, 500f, 1 << LayerMask.NameToLayer("Terrain")))
+        if (Physics.Raycast(worldRay, out _RaycastHit, 500f, 1 << LayerMask.NameToLayer(_TerrainLayerName.stringValue)))
         {
             _IsRayHit = true;
             Handles.color = new Color(1f, 1f, 1f, 0.5f);
@@ -150,6 +147,16 @@ public class GrassBrushEditor : UnityEditor.Editor
     {
         var x = UnityEngine.Random.value;
         return x;
+    }
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        if (GUILayout.Button("Save"))
+        {
+            var mono = target as GrassBrush;
+            mono.Save();
+        }
     }
 }
 

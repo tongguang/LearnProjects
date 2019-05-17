@@ -3,36 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace N3D.Editor
+[ExecuteInEditMode]
+public class GrassEditorDataCache : MonoBehaviour
 {
-    [ExecuteInEditMode]
-    public class GrassEditorDataCache : MonoBehaviour
+    public Renderer RendererObj;
+
+    public Color GrassColor = Color.white;
+    public Texture GrassTexture = null;
+
+    private void Start()
     {
-        public Renderer RendererObj;
-
-        public Color GrassColor = Color.white;
-        public Texture GrassTexture = null;
-
-        private void Start()
+        if (RendererObj)
         {
-            if (RendererObj)
-            {
-                var props = new MaterialPropertyBlock();
-                props.SetColor("_Color", GrassColor);
-                props.SetTexture("_MainTex", GrassTexture);
-                RendererObj.SetPropertyBlock(props);
-            }
+            var props = new MaterialPropertyBlock();
+            props.SetColor("_Color", GrassColor);
+            props.SetTexture("_MainTex", GrassTexture);
+            RendererObj.SetPropertyBlock(props);
         }
+    }
 
-        private void OnEnable()
+    private void OnEnable()
+    {
+        if (RendererObj)
         {
-            if (RendererObj)
-            {
-                var props = new MaterialPropertyBlock();
-                props.SetColor("_Color", GrassColor);
-                props.SetTexture("_MainTex", GrassTexture);
-                RendererObj.SetPropertyBlock(props);
-            }
+            var props = new MaterialPropertyBlock();
+            props.SetColor("_Color", GrassColor);
+            props.SetTexture("_MainTex", GrassTexture);
+            RendererObj.SetPropertyBlock(props);
         }
     }
 }

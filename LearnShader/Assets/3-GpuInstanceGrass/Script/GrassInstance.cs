@@ -79,7 +79,7 @@ public class GrassInstance : MonoBehaviour
         }
     }
 
-    public void SetMapGrassInfo(GrassData grassData)
+    public void SetMapGrassData(GrassData grassData)
     {
         GrassDataInfo = grassData;
         _ShowBlockDirty = true;
@@ -110,7 +110,7 @@ public class GrassInstance : MonoBehaviour
 
     public void Clear()
     {
-        SetMapGrassInfo(null);
+        SetMapGrassData(null);
     }
 
     void Awake()

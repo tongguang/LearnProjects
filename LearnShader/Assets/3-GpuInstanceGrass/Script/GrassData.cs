@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class GrassData : ScriptableObject {
 
     [Serializable]
@@ -22,6 +24,6 @@ public class GrassData : ScriptableObject {
 
     public int BlockXMax;
     public int BlockYMax;
-    public List<Texture> GrassTextures = new List<Texture>();
+    public List<Texture2D> GrassTextures = new List<Texture2D>();
     public List<GrassBlock> BlockList = new List<GrassBlock>();
 }
