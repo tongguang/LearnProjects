@@ -5,15 +5,16 @@ using UnityEngine;
 public class GpuGrassTest : MonoBehaviour
 {
     public GrassData GrassDataInfo;
-    public GrassInstance GrassInstancePrefab;
+    public GrassInstance GrassInstanceObj;
 
 	void Start ()
     {
-        GrassInstancePrefab.SetMapGrassData(GrassDataInfo);
+        GrassInstanceObj.SetMapGrassData(GrassDataInfo);
+        GrassInstanceObj.SetGrassLevel(1);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        GrassInstanceObj.SetRolePosition(transform.position.x, transform.position.z);
+    }
 }

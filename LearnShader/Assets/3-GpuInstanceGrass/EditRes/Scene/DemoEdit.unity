@@ -302,7 +302,6 @@ MonoBehaviour:
   CreateGrassNum: 1
   TerrainLayerName: Terrain
   MapSize: {x: 100, y: 100}
-  BlockSize: {x: 30, y: 30}
   GrassDataDir: Assets/3-GpuInstanceGrass/GrassData
   GrassDataFileName: grass_data
 --- !u!4 &213834987

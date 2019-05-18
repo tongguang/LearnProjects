@@ -5,13 +5,15 @@ using UnityEngine.Rendering;
 
 public class GrassInstance : MonoBehaviour
 {
+    public static Vector2Int BlockSize = new Vector2Int(30, 30);
+
     public class SubmitInstance
     {
         public Matrix4x4[] Matrixs;
         public MaterialPropertyBlock PropertyBlock = new MaterialPropertyBlock();
     }
 
-    public Vector2Int BlockSize = new Vector2Int(30, 30);
+    // public Vector2Int BlockSize = new Vector2Int(30, 30);
 
     public Camera RenderCamera;
 

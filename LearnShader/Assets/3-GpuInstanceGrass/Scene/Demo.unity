@@ -160,6 +160,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8108a1b203ca45418a84710e5d795b1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &583586625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 583586627}
+  - component: {fileID: 583586626}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &583586626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 583586625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c4e94d5f8a6794181d1628d13371b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrassDataInfo: {fileID: 11400000, guid: ca1860baebf404545af8e71106c5d248, type: 2}
+  GrassInstanceObj: {fileID: 1530078215}
+--- !u!4 &583586627
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 583586625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903460133
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,24 +283,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1530078213 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1696781180489284, guid: d8108a1b203ca45418a84710e5d795b1,
-    type: 2}
-  m_PrefabInternal: {fileID: 40168405}
---- !u!114 &1530078214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530078213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c4e94d5f8a6794181d1628d13371b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GrassDataInfo: {fileID: 11400000, guid: ca1860baebf404545af8e71106c5d248, type: 2}
-  GrassInstancePrefab: {fileID: 1530078215}
 --- !u!114 &1530078215 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114256154784952712, guid: d8108a1b203ca45418a84710e5d795b1,

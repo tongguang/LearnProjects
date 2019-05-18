@@ -27,7 +27,7 @@ public class GrassBrush : MonoBehaviour
 
     public Vector2Int MapSize = new Vector2Int(100, 100);
 
-    public Vector2Int BlockSize = new Vector2Int(30, 30);
+//    public Vector2Int BlockSize = new Vector2Int(30, 30);
 
     public string GrassDataDir = "Assets/3-GpuInstanceGrass/GrassData";
 
@@ -42,8 +42,8 @@ public class GrassBrush : MonoBehaviour
 
     public void Save()
     {
-        int xMax = Mathf.CeilToInt((1.0f * MapSize.x / BlockSize.x));
-        int yMax = Mathf.CeilToInt((1.0f * MapSize.y / BlockSize.y));
+        int xMax = Mathf.CeilToInt((1.0f * MapSize.x / GrassInstance.BlockSize.x));
+        int yMax = Mathf.CeilToInt((1.0f * MapSize.y / GrassInstance.BlockSize.y));
         GrassData grassData = ScriptableObject.CreateInstance<GrassData>();
         for (int i = 0; i < xMax * yMax; i++)
         {
@@ -57,8 +57,8 @@ public class GrassBrush : MonoBehaviour
         HashSet<Texture2D> textures = new HashSet<Texture2D>();
         foreach (var msehFilter in msehFilters)
         {
-            var blockX = Mathf.FloorToInt(1.0f * msehFilter.transform.position.x / BlockSize.x);
-            var blockY = Mathf.FloorToInt(1.0f * msehFilter.transform.position.z / BlockSize.y);
+            var blockX = Mathf.FloorToInt(1.0f * msehFilter.transform.position.x / GrassInstance.BlockSize.x);
+            var blockY = Mathf.FloorToInt(1.0f * msehFilter.transform.position.z / GrassInstance.BlockSize.y);
             var index = blockY * xMax + blockX;
             var grassItem = new GrassData.GrassItem();
             grassData.BlockList[index].GrassItems.Add(grassItem);
