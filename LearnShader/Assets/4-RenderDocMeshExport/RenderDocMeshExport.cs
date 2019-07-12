@@ -49,6 +49,24 @@ public class RenderDocMeshExport
         List<Vector2> uv0List = null;
         List<Vector2> uv1List = null;
 
+        // 重新算三角形顶点索引
+        HashSet<int> idxSet = new HashSet<int>();
+        foreach (var renderDocMesh in datas)
+        {
+            idxSet.Add(renderDocMesh.IDX);
+        }
+        var idxList = idxSet.ToList();
+        idxList.Sort();
+        var newIdxDict = new Dictionary<int, int>();
+        for (int i = 0; i < idxList.Count; i++)
+        {
+            newIdxDict.Add(idxList[i], i);
+        }
+        foreach (var renderDocMesh in datas)
+        {
+            renderDocMesh.IDX = newIdxDict[renderDocMesh.IDX];
+        }
+
         Dictionary<int, RenderDocMesh> renderDocMeshDict = new Dictionary<int, RenderDocMesh>();
 
         foreach (var renderDocMesh in datas)
@@ -59,9 +77,9 @@ public class RenderDocMeshExport
             }
         }
 
+        // 计算顶点
         var keys = renderDocMeshDict.Keys.ToList();
         keys.Sort();
-        var minIndice = keys[0];
         foreach (var key in keys)
         {
             var renderDocMesh = renderDocMeshDict[key];
@@ -100,10 +118,11 @@ public class RenderDocMeshExport
             }
         }
 
+        // 生成三角形
         List<int> indices = new List<int>();
         foreach (var renderDocMesh in datas)
         {
-            indices.Add(renderDocMesh.IDX - minIndice);
+            indices.Add(renderDocMesh.IDX);
         }
 
         mesh.SetVertices(positionList);
