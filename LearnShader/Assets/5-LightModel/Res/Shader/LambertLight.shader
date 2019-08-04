@@ -53,7 +53,9 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float3 lightDir = UnityWorldSpaceLightDir(i.worldVertex);
-				float3 lDotN = max(0, dot(lightDir, i.worldNormal));
+				lightDir = normalize(lightDir);
+				float3 worldNormal = normalize(i.worldNormal);
+				float3 lDotN = max(0, dot(lightDir, worldNormal));
 				float3 dirDiff = _LightColor0 * lDotN;
 				float3 inDirDiff = UNITY_LIGHTMODEL_AMBIENT.rgb;
 				// sample the texture
