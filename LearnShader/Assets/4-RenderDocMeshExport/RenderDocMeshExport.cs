@@ -77,7 +77,15 @@ public class RenderDocMeshExport
         public float texcoord1Y;
     }
 
-    public static void RenderDocCsvToMesh(string srcPath, string outDir)
+    [MenuItem("Assets/Learn/ExportRenderDocMesh")]
+    public static void Export()
+    {
+        var path = AssetDatabase.GetAssetPath(Selection.activeObject);
+        var dir = Path.GetDirectoryName(path);
+        Export(path, dir);
+    }
+
+    public static void Export(string srcPath, string outDir)
     {
         if (!File.Exists(srcPath))
         {
@@ -249,7 +257,7 @@ public class RenderDocMeshExport
         AssetDatabase.CreateAsset(mesh, meshOutPath);
     }
 
-    public static void CreateFolderIfNeed(string path)
+    private static void CreateFolderIfNeed(string path)
     {
         if (path.EndsWith("/"))
         {
