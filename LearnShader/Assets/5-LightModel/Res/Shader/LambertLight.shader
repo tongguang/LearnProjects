@@ -1,4 +1,4 @@
-﻿Shader "LearnShader/LambertLight"
+﻿Shader "LearnShader/LightModel/LambertLight"
 {
 	Properties
 	{

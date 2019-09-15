@@ -1,4 +1,4 @@
-﻿Shader "LearnShader/BlinnPhongLight"
+﻿Shader "LearnShader/LightModel/BlinnPhongLight"
 {
 	Properties
 	{

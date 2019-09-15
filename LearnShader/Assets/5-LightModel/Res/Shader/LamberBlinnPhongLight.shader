@@ -1,4 +1,4 @@
-﻿Shader "LearnShader/LamberBlinnPhongLight"
+﻿Shader "LearnShader/LightModel/LamberBlinnPhongLight"
 {
 	Properties
 	{
